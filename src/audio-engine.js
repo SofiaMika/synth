@@ -16,7 +16,6 @@ export class AudioEngine {
 
   start() {
     if (!this.startPromise) {
-      // Tone.start() вызывается прямо после клика: этого требуют браузеры.
       this.startPromise = Tone.start()
         .then(() => {
           this.createGraph();
