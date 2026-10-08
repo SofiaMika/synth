@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Простой синтезатор</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>Синтезатор</h1>
+        <p>Нажмите на ноту мышкой, чтобы включить звук. Нажмите ещё раз, чтобы выключить.</p>
+      </div>
+      <div class="header-actions">
+        <button id="stop-all" class="stop-button" type="button">Выключить все ноты</button>
+        <button id="reset-all" class="reset-button" type="button">Сбросить все настройки</button>
+      </div>
+    </header>
+
+    <div class="synths">
+      <section class="synth synth--surface" aria-labelledby="surface-title">
+        <h2 id="surface-title">Surface Synth <small>высокий звук</small></h2>
+        <div class="controls">
+          <label class="slider-control" for="surface-volume">
+            <span>Громкость <output data-value="surface-volume">65%</output></span>
+            <input id="surface-volume" type="range" min="0" max="100" value="65" />
+          </label>
+          <div class="knob-control">
+            <label for="surface-detune">Расстройка</label>
+            <div class="knob-wrap">
+              <span class="knob-face"></span>
+              <input id="surface-detune" type="range" min="-100" max="100" value="0" />
+            </div>
+            <output data-value="surface-detune">0 ct</output>
+          </div>
+          <div class="knob-control">
+            <label for="surface-pan">Панорама</label>
+            <div class="knob-wrap">
+              <span class="knob-face"></span>
+              <input id="surface-pan" type="range" min="-100" max="100" value="0" />
+            </div>
+            <output data-value="surface-pan">центр</output>
+          </div>
+          <label class="select-control" for="surface-wave">
+            <span>Форма волны</span>
+            <select id="surface-wave">
+              <option value="sine">Синус</option>
+              <option value="triangle">Треугольник</option>
+              <option value="square">Квадрат</option>
+              <option value="sawtooth">Пила</option>
+            </select>
+          </label>
+        </div>
+        <div class="notes-label">Ноты</div>
+        <div class="notes">
+          <button type="button" class="note" data-synth="surface" data-note="C4" aria-pressed="false">До
+            <small>C4</small></button>
+          <button type="button" class="note" data-synth="surface" data-note="D4" aria-pressed="false">Ре
+            <small>D4</small></button>
+          <button type="button" class="note" data-synth="surface" data-note="E4" aria-pressed="false">Ми
+            <small>E4</small></button>
+          <button type="button" class="note" data-synth="surface" data-note="G4" aria-pressed="false">Соль
+            <small>G4</small></button>
+        </div>
+      </section>
+
+      <section class="synth synth--deep" aria-labelledby="deep-title">
+        <h2 id="deep-title">Deep Synth <small>низкий звук</small></h2>
+        <div class="controls">
+          <label class="slider-control" for="deep-volume">
+            <span>Громкость <output data-value="deep-volume">65%</output></span>
+            <input id="deep-volume" type="range" min="0" max="100" value="65" />
+          </label>
+          <div class="knob-control">
+            <label for="deep-detune">Расстройка</label>
+            <div class="knob-wrap">
+              <span class="knob-face"></span>
+              <input id="deep-detune" type="range" min="-100" max="100" value="0" />
+            </div>
+            <output data-value="deep-detune">0 ct</output>
+          </div>
+          <div class="knob-control">
+            <label for="deep-pan">Панорама</label>
+            <div class="knob-wrap">
+              <span class="knob-face"></span>
+              <input id="deep-pan" type="range" min="-100" max="100" value="0" />
+            </div>
+            <output data-value="deep-pan">центр</output>
+          </div>
+          <label class="select-control" for="deep-wave">
+            <span>Форма волны</span>
+            <select id="deep-wave">
+              <option value="sine">Синус</option>
+              <option value="triangle" selected>Треугольник</option>
+              <option value="square">Квадрат</option>
+              <option value="sawtooth">Пила</option>
+            </select>
+          </label>
+        </div>
+        <div class="notes-label">Ноты</div>
+        <div class="notes">
+          <button type="button" class="note" data-synth="deep" data-note="C2" aria-pressed="false">До
+            <small>C2</small></button>
+          <button type="button" class="note" data-synth="deep" data-note="D2" aria-pressed="false">Ре
+            <small>D2</small></button>
+          <button type="button" class="note" data-synth="deep" data-note="E2" aria-pressed="false">Ми
+            <small>E2</small></button>
+          <button type="button" class="note" data-synth="deep" data-note="G2" aria-pressed="false">Соль
+            <small>G2</small></button>
+        </div>
+      </section>
+    </div>
+
+    <section class="bottom-panel" aria-label="Эффекты и выход">
+      <div class="effects">
+        <h2>Эффекты</h2>
+        <div class="effects-controls">
+          <div class="knob-control">
+            <label for="filter">Фильтр</label>
+            <div class="knob-wrap">
+              <span class="knob-face"></span>
+              <input id="filter" type="range" min="200" max="8000" value="6000" />
+            </div>
+            <output data-value="filter">6000 Hz</output>
+          </div>
+          <label class="slider-control" for="echo">
+            <span>Эхо <output data-value="echo">15%</output></span>
+            <input id="echo" type="range" min="0" max="50" value="15" />
+          </label>
+        </div>
+      </div>
+      <div class="master">
+        <h2>Общий выход</h2>
+        <label class="slider-control" for="master-volume">
+          <span>Громкость <output data-value="master-volume">70%</output></span>
+          <input id="master-volume" type="range" min="0" max="100" value="70" />
+        </label>
+        <p id="status" role="status">Готов к игре</p>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "nocturne-synth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --bun vite",
+    "build": "bun --bun vite build",
+    "preview": "bun --bun vite preview"
+  },
+  "dependencies": {
+    "tone": "^15.1.22"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}
